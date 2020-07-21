@@ -1,0 +1,38 @@
+<div class="split left" style="margin-top:75px;overflow: scroll;">    
+    <ul class="w3-ul w3-card-4">
+      <li (click) = "EnterRoom(item.id)" *ngFor="let item of ChatInfo" class="w3-bar">        
+        <img src="../../assets/VNurt/img/DefaultProfile.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+        <div class="w3-bar-item">
+          <span class="w3-large">{{item.name}}</span><br>
+          <span>{{item.lastMessage}}</span>
+        </div>      
+      </li>
+    </ul>
+  </div>
+  <img *ngIf="users=='' && chatTitle==''" src="../../assets/VNurt/img/ChatImage.jpg">
+  <div class="split right" id="messagesDIV" style="margin-top:80px;height: 81%;">
+    <div *ngIf="users!='' && chatTitle!=''" style="height: 65px;margin-top:-20px;color:white;background-color:#333;overflow:hidden" class="w3-bar">
+      <img src="../../assets/VNurt/img/DefaultProfile.jpg" class="w3-bar-item w3-circle w3-hide-small" style="margin-left: -3px;height: 96%;margin-top: 2px;"/>
+      <div style="line-height: 0px;margin-left: -34px;" class="w3-bar-block w3-bar-item">
+        <p id="chatTitle" class="w3-bar-item" style="margin-top:6px;font-size: 27px;font-family: initial;">{{chatTitle}}</p>
+        <p id="users" class="w3-bar-item">{{users|slice : 0: 120}}...</p>
+      </div>
+    </div>
+    <ul id="messages" class="messageList" style="padding: 0px;">      
+      <li *ngFor="let item of UserChats[this.roomId];">        
+        <div [ngClass]="this.common.loggedUser != null && this.common.loggedUser.userId != item.FromUserId ? 'bubble l' : 'bubble r'">         
+          <p class="time-left-small">{{item.FullName}}</p>
+          <br>
+          <p class="member-info" >{{item.ChatMessage}}</p>
+          <!-- <span class="time-right-small">{{'item.DateSent' | date:'h:mm a'}}</span> -->
+        </div>
+      </li><br/>
+    </ul>
+    <div id="messagePanel" style="position:fixed;bottom:0px;float:right; background-color: #111; height:9%;width: 78%">
+      <textarea *ngIf="users!='' && chatTitle!=''" id="newMessage" [(ngModel)]="message" placeholder="Type message here..." style="margin-left:1%;font-size:15px;font-family:verdana; width:88%; vertical-align:bottom;"
+        (keyup.enter)="validateSubmit()"></textarea>
+      <img *ngIf="users!='' && chatTitle!=''" src="https://image.flaticon.com/icons/png/512/15/15537.png" class="w3-bar-item w3-circle w3-hide-small" height="54"
+      (click)="validateSubmit()"  
+      style="margin-left:5px; padding-left:5px; padding-right:5px; vertical-align:center; background-color: rgb(0,140,210); border-radius: 3px;">
+    </div>
+  </div>

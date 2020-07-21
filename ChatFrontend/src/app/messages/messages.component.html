@@ -1,0 +1,30 @@
+<div class="split left" style="margin-top:75px;overflow: scroll;">
+  <ul class="w3-ul w3-card-4">
+    <li class="w3-bar">
+      <!-- <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span> -->
+      <img src="../../assets/VNurt/img/DefaultProfile.jpg" class="w3-bar-item w3-circle w3-hide-small"
+        style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">fromUserName</span><br>
+        <span>message</span>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="split right" id="messagesDIV" style="margin-top:80px;height: 81%;">
+  <div>
+    <p class="time-left-small">toUserName</p>
+    <br>
+    <p class="member-info">message</p>
+    <span class="time-right-small">createDate</span>
+  </div>
+  <br />
+  <div id="messagePanel" style="position:fixed;bottom:0px;float:right; background-color: #111; height:9%;width: 78%">
+    <textarea id="newMessage" [(ngModel)]="message" placeholder="Type message here..."
+      style="margin-left:1%;font-size:15px;font-family:verdana; width:88%; vertical-align:bottom;"></textarea>
+    <img src="https://image.flaticon.com/icons/png/512/15/15537.png" class="w3-bar-item w3-circle w3-hide-small"
+      height="54"
+      style="margin-left:5px; padding-left:5px; padding-right:5px; vertical-align:center; background-color: rgb(0,140,210); border-radius: 3px;"
+      (click)="submitMessage()">
+  </div>
+</div>
